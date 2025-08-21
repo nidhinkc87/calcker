@@ -30,6 +30,18 @@
     <!-- Structured Data -->
     @yield('structured_data')
     
+    @if(app()->environment('production'))
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F3LVEKJEN9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F3LVEKJEN9');
+    </script>
+    @endif
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700" rel="stylesheet" />
