@@ -43,18 +43,38 @@
     @endif
     
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700" rel="stylesheet" />
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Critical CSS - inline minimal styles for above-the-fold content -->
+    <style>
+        body{font-family:system-ui,-apple-system,sans-serif;margin:0;padding:0;background-color:#f9fafb;min-height:100vh;display:flex;flex-direction:column}
+        .header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50}
+        .container{max-width:1280px;margin:0 auto;padding:0 1rem}
+        .main-content{flex:1}
+        @media(min-width:768px){.container{padding:0 2rem}}
+    </style>
+    
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="preload" href="https://fonts.bunny.net/css?family=inter:400,500,600,700" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.bunny.net/css?family=inter:400,500,600,700" rel="stylesheet"></noscript>
+    
+    <!-- Load Tailwind CSS asynchronously -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script" onload="this.onload=null;this.rel='script'">
+    <script>
+        // Load Tailwind CSS asynchronously
+        const tailwindScript = document.createElement('script');
+        tailwindScript.src = 'https://cdn.tailwindcss.com';
+        tailwindScript.defer = true;
+        document.head.appendChild(tailwindScript);
+    </script>
     
     @stack('styles')
 </head>
 <body class="font-sans antialiased bg-gray-50 flex flex-col min-h-screen">
     @include('partials.header')
     
-    <main class="flex-grow">
+    <main class="main-content">
         @yield('content')
     </main>
     
