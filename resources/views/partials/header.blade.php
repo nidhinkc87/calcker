@@ -57,6 +57,14 @@
                                     <span>HMRC Furlough Claim Calculator</span>
                                 </div>
                             </a>
+                            <a href="{{ route('income.tax.calculator') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span>Income Tax Calculator</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -85,6 +93,7 @@
                         <a href="{{ route('vat.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">VAT Calculator (UK)</a>
                         <a href="{{ route('corporation.tax.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">UK Corporation Tax Calculator</a>
                         <a href="{{ route('furlough.claim.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">HMRC Furlough Claim Calculator</a>
+                        <a href="{{ route('income.tax.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">Income Tax Calculator</a>
                     </div>
                 </div>
                 <a href="{{ route('blog.index') }}" class="block px-4 py-2 text-gray-700 font-medium hover:text-blue-600">Blogs</a>
