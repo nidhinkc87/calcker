@@ -205,7 +205,7 @@
 
                         <!-- Results Section -->
                         <div class="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8">
-                            <h3 class="text-xl font-bold text-gray-800 mb-6">Calculation Results</h3>
+                            <h2 class="text-xl font-bold text-gray-800 mb-6">Calculation Results</h2>
                             
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center pb-4 border-b border-blue-100">
