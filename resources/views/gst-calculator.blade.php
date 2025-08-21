@@ -185,7 +185,7 @@
                                     >
                                     <div class="px-4 py-4 text-center border-2 border-gray-300 rounded-xl peer-checked:border-blue-500 peer-checked:bg-blue-50 hover:border-gray-400 transition-all">
                                         <p class="font-medium">Exclusive of Tax</p>
-                                        <p class="text-xs text-gray-500 mt-1">Add GST to amount</p>
+                                        <p class="text-xs text-gray-600 mt-1">Add GST to amount</p>
                                     </div>
                                 </label>
                                 <label class="relative cursor-pointer">
@@ -197,7 +197,7 @@
                                     >
                                     <div class="px-4 py-4 text-center border-2 border-gray-300 rounded-xl peer-checked:border-blue-500 peer-checked:bg-blue-50 hover:border-gray-400 transition-all">
                                         <p class="font-medium">Inclusive of Tax</p>
-                                        <p class="text-xs text-gray-500 mt-1">GST included in amount</p>
+                                        <p class="text-xs text-gray-600 mt-1">GST included in amount</p>
                                     </div>
                                 </label>
                             </div>
@@ -205,7 +205,7 @@
 
                         <!-- Results Section -->
                         <div class="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8">
-                            <h3 class="text-xl font-bold text-gray-800 mb-6">Calculation Results</h3>
+                            <h2 class="text-xl font-bold text-gray-800 mb-6">Calculation Results</h2>
                             
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center pb-4 border-b border-blue-100">
