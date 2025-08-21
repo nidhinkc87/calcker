@@ -65,6 +65,14 @@
                                     <span>Income Tax Calculator</span>
                                 </div>
                             </a>
+                            <a href="{{ route('eps.pension.calculator') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                    </svg>
+                                    <span>EPS Pension Calculator</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -94,6 +102,7 @@
                         <a href="{{ route('corporation.tax.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">UK Corporation Tax Calculator</a>
                         <a href="{{ route('furlough.claim.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">HMRC Furlough Claim Calculator</a>
                         <a href="{{ route('income.tax.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">Income Tax Calculator</a>
+                        <a href="{{ route('eps.pension.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">EPS Pension Calculator</a>
                     </div>
                 </div>
                 <a href="{{ route('blog.index') }}" class="block px-4 py-2 text-gray-700 font-medium hover:text-blue-600">Blogs</a>

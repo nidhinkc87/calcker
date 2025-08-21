@@ -6,6 +6,7 @@ use App\Http\Controllers\VATCalculatorController;
 use App\Http\Controllers\CorporationTaxCalculatorController;
 use App\Http\Controllers\FurloughClaimCalculatorController;
 use App\Http\Controllers\IncomeTaxCalculatorController;
+use App\Http\Controllers\EPSPensionCalculatorController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 
@@ -18,6 +19,7 @@ Route::get('/free-vat-calculator', [VATCalculatorController::class, 'index'])->n
 Route::get('/corporation-tax-calculator', [CorporationTaxCalculatorController::class, 'index'])->name('corporation.tax.calculator');
 Route::get('/furlough-claim-calculator', [FurloughClaimCalculatorController::class, 'index'])->name('furlough.claim.calculator');
 Route::get('/income-tax-calculator', [IncomeTaxCalculatorController::class, 'index'])->name('income.tax.calculator');
+Route::get('/free-eps-pension-calculator', [EPSPensionCalculatorController::class, 'index'])->name('eps.pension.calculator');
 
 // Blog routes
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
