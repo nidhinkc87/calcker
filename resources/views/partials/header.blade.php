@@ -41,6 +41,14 @@
                                     <span>VAT Calculator (UK)</span>
                                 </div>
                             </a>
+                            <a href="{{ route('corporation.tax.calculator') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                    </svg>
+                                    <span>UK Corporation Tax Calculator</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -67,6 +75,7 @@
                     <div class="pl-8 space-y-2">
                         <a href="{{ route('gst.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">GST Calculator (India)</a>
                         <a href="{{ route('vat.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">VAT Calculator (UK)</a>
+                        <a href="{{ route('corporation.tax.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">UK Corporation Tax Calculator</a>
                     </div>
                 </div>
                 <a href="{{ route('blog.index') }}" class="block px-4 py-2 text-gray-700 font-medium hover:text-blue-600">Blogs</a>

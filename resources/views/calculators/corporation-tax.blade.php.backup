@@ -1,0 +1,304 @@
+@extends('layouts.app')
+
+@section('title', 'UK Corporation Tax Calculator - Free Online Tool | Calculate Your Business Tax')
+@section('meta_description', 'Calculate UK corporation tax instantly with our free online calculator. Estimate your business tax liability for 2024-25 with allowed expenses and tax deductions.')
+@section('meta_keywords', 'UK corporation tax calculator, business tax calculator, corporate tax UK, company tax calculator, HMRC tax calculator, tax liability calculator')
+
+@section('structured_data')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "UK Corporation Tax Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+    },
+    "description": "Free online UK corporation tax calculator to estimate your business tax liability with allowed expenses and deductions",
+    "url": "{{ url('/corporation-tax-calculator') }}",
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ config('app.name') }}"
+    }
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+        "@type": "Question",
+        "name": "What is UK Corporation Tax?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Corporation Tax is a tax that UK limited companies pay on their profits. The current rate is 19% for the 2024-25 tax year."
+        }
+    }, {
+        "@type": "Question",
+        "name": "How is Corporation Tax calculated?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Corporation Tax is calculated on your company's taxable profits. This includes trading profits, investment profits, and gains on the sale of assets."
+        }
+    }, {
+        "@type": "Question",
+        "name": "What expenses can I deduct from Corporation Tax?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can deduct allowable business expenses such as salaries, rent, office costs, and professional fees. Some expenses like client entertainment must be added back."
+        }
+    }]
+}
+</script>
+@endsection
+
+@section('content')
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">UK Corporation Tax Calculator</h1>
+    
+    <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Calculator Section -->
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <p class="text-gray-600 mb-6">Calculate your UK corporation tax liability for 2024-25. Enter your profit and expenses below to get an instant estimate.</p>
+                
+                <form id="corporationTaxCalculator" class="space-y-6">
+                    <!-- Net Profit -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Net Profit (£)
+                            <span class="text-gray-500 text-xs ml-1">(Profit/Loss before expenses)</span>
+                        </label>
+                        <input type="number" 
+                               id="netProfit" 
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                               placeholder="0.00"
+                               step="0.01"
+                               min="0">
+                    </div>
+
+                    <!-- Allowed Expenses Section -->
+                    <div class="bg-gray-50 p-4 rounded-md">
+                        <h3 class="font-semibold text-gray-700 mb-3">Allowed Expenses</h3>
+                        <p class="text-sm text-gray-600 mb-3">Business expenses that reduce your taxable profit</p>
+                        
+                        <div id="allowedExpenses" class="space-y-3">
+                            <!-- Dynamic expense rows will be added here -->
+                        </div>
+                        
+                        <button type="button" 
+                                onclick="addExpenseRow('allowed')" 
+                                class="mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium">
+                            + Add Expense
+                        </button>
+                    </div>
+
+                    <!-- Add Back Expenses Section -->
+                    <div class="bg-gray-50 p-4 rounded-md">
+                        <h3 class="font-semibold text-gray-700 mb-3">Add Back Expenses</h3>
+                        <p class="text-sm text-gray-600 mb-3">Expenses that must be added back for tax purposes (e.g., entertainment, depreciation)</p>
+                        
+                        <div id="addBackExpenses" class="space-y-3">
+                            <!-- Dynamic expense rows will be added here -->
+                        </div>
+                        
+                        <button type="button" 
+                                onclick="addExpenseRow('addback')" 
+                                class="mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium">
+                            + Add Expense
+                        </button>
+                    </div>
+
+                    <!-- Calculate Button -->
+                    <button type="button" 
+                            onclick="calculateCorporationTax()" 
+                            class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-md hover:bg-blue-700 transition duration-300">
+                        Calculate Corporation Tax
+                    </button>
+                </form>
+
+                <!-- Results Section -->
+                <div id="results" class="mt-8 p-6 bg-blue-50 rounded-lg hidden">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Tax Calculation Results</h3>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Net Profit:</span>
+                            <span id="resultNetProfit" class="font-medium">£0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Less: Allowed Expenses:</span>
+                            <span id="resultAllowedExpenses" class="font-medium text-red-600">-£0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Add: Add Back Expenses:</span>
+                            <span id="resultAddBackExpenses" class="font-medium text-green-600">+£0.00</span>
+                        </div>
+                        <div class="border-t pt-3 mt-3">
+                            <div class="flex justify-between text-lg">
+                                <span class="font-semibold">Profit Before Tax:</span>
+                                <span id="resultProfitBeforeTax" class="font-semibold">£0.00</span>
+                            </div>
+                        </div>
+                        <div class="border-t pt-3 mt-3">
+                            <div class="flex justify-between text-xl">
+                                <span class="font-bold text-blue-600">Corporation Tax (19%):</span>
+                                <span id="resultCorporationTax" class="font-bold text-blue-600">£0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-3">Current Tax Rate</h2>
+                <div class="text-3xl font-bold text-blue-600 mb-2">19%</div>
+                <p class="text-sm text-gray-600">For the 2024-25 tax year</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Quick Guide</h2>
+                <div class="space-y-4 text-sm">
+                    <div>
+                        <h3 class="font-medium text-gray-700 mb-1">Allowed Expenses Include:</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Staff salaries and wages</li>
+                            <li>Office rent and utilities</li>
+                            <li>Professional fees</li>
+                            <li>Business insurance</li>
+                            <li>Marketing costs</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-700 mb-1">Add Back Expenses Include:</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Client entertainment</li>
+                            <li>Depreciation</li>
+                            <li>Fines and penalties</li>
+                            <li>Personal expenses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Educational Content -->
+    <div class="mt-12 grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">What is Corporation Tax?</h2>
+            <p class="text-gray-600 mb-3">Corporation Tax is a tax on the profits of limited companies and some other organisations in the UK. All limited companies must pay Corporation Tax on their profits, including:</p>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                <li>Trading profits from business activities</li>
+                <li>Investment profits and gains</li>
+                <li>Profits from selling assets (chargeable gains)</li>
+            </ul>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">How to Calculate Corporation Tax</h2>
+            <ol class="list-decimal list-inside text-gray-600 space-y-2">
+                <li>Start with your net profit (revenue minus costs)</li>
+                <li>Subtract allowable business expenses</li>
+                <li>Add back non-deductible expenses</li>
+                <li>Apply the 19% tax rate to taxable profit</li>
+                <li>The result is your Corporation Tax liability</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+        <p class="text-sm text-gray-700">
+            <strong>Disclaimer:</strong> This calculator provides estimates for general guidance only. For accurate tax calculations and advice specific to your circumstances, please consult a qualified accountant or tax advisor. Tax rules can change and may vary based on individual circumstances.
+        </p>
+    </div>
+</div>
+
+<script>
+let expenseIdCounter = 0;
+
+function addExpenseRow(type) {
+    const containerId = type === 'allowed' ? 'allowedExpenses' : 'addBackExpenses';
+    const container = document.getElementById(containerId);
+    const expenseId = `expense_${type}_${expenseIdCounter++}`;
+    
+    const expenseRow = document.createElement('div');
+    expenseRow.id = expenseId;
+    expenseRow.className = 'flex gap-2';
+    expenseRow.innerHTML = `
+        <input type="text" 
+               placeholder="Expense name" 
+               class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
+        <input type="number" 
+               placeholder="Amount" 
+               step="0.01"
+               min="0"
+               class="w-32 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm expense-amount"
+               data-type="${type}">
+        <button type="button" 
+                onclick="removeExpenseRow('${expenseId}')" 
+                class="px-3 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-md transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    `;
+    
+    container.appendChild(expenseRow);
+}
+
+function removeExpenseRow(rowId) {
+    document.getElementById(rowId).remove();
+}
+
+function calculateCorporationTax() {
+    // Get net profit
+    const netProfit = parseFloat(document.getElementById('netProfit').value) || 0;
+    
+    // Calculate allowed expenses total
+    let allowedExpensesTotal = 0;
+    document.querySelectorAll('.expense-amount[data-type="allowed"]').forEach(input => {
+        allowedExpensesTotal += parseFloat(input.value) || 0;
+    });
+    
+    // Calculate add back expenses total
+    let addBackExpensesTotal = 0;
+    document.querySelectorAll('.expense-amount[data-type="addback"]').forEach(input => {
+        addBackExpensesTotal += parseFloat(input.value) || 0;
+    });
+    
+    // Calculate profit before tax
+    const profitBeforeTax = netProfit - allowedExpensesTotal + addBackExpensesTotal;
+    
+    // Calculate corporation tax (19%)
+    const corporationTax = Math.max(0, profitBeforeTax * 0.19);
+    
+    // Display results
+    document.getElementById('resultNetProfit').textContent = `£${netProfit.toFixed(2)}`;
+    document.getElementById('resultAllowedExpenses').textContent = `-£${allowedExpensesTotal.toFixed(2)}`;
+    document.getElementById('resultAddBackExpenses').textContent = `+£${addBackExpensesTotal.toFixed(2)}`;
+    document.getElementById('resultProfitBeforeTax').textContent = `£${profitBeforeTax.toFixed(2)}`;
+    document.getElementById('resultCorporationTax').textContent = `£${corporationTax.toFixed(2)}`;
+    
+    // Show results section
+    document.getElementById('results').classList.remove('hidden');
+    
+    // Scroll to results
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Add initial expense rows
+document.addEventListener('DOMContentLoaded', function() {
+    addExpenseRow('allowed');
+    addExpenseRow('addback');
+});
+</script>
+@endsection

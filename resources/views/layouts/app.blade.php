@@ -8,8 +8,8 @@
     
     <!-- SEO Meta Tags -->
     <title>@yield('title', 'Free GST Calculator Online - Calculate GST Instantly | CalcPro')</title>
-    <meta name="description" content="@yield('description', 'Free online GST calculator for India. Calculate GST instantly with our easy-to-use tool. Supports all GST rates (5%, 12%, 18%, 28%). Perfect for businesses and individuals.')">
-    <meta name="keywords" content="@yield('keywords', 'GST calculator, GST calculation, goods and services tax, India GST, free calculator, tax calculator, CGST, SGST, IGST')">
+    <meta name="description" content="@yield('meta_description', 'Free online GST calculator for India. Calculate GST instantly with our easy-to-use tool. Supports all GST rates (5%, 12%, 18%, 28%). Perfect for businesses and individuals.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'GST calculator, GST calculation, goods and services tax, India GST, free calculator, tax calculator, CGST, SGST, IGST')">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
@@ -28,7 +28,7 @@
     <meta name="twitter:description" content="@yield('twitter_description', 'Free online GST calculator for India. Calculate GST instantly with our easy-to-use tool.')">
     
     <!-- Structured Data -->
-    @stack('structured_data')
+    @yield('structured_data')
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

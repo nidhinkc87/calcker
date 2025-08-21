@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GSTCalculatorController;
 use App\Http\Controllers\VATCalculatorController;
+use App\Http\Controllers\CorporationTaxCalculatorController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 
@@ -12,6 +13,7 @@ Route::get('/', function () {
 
 Route::get('/free-gst-calculator', [GSTCalculatorController::class, 'index'])->name('gst.calculator');
 Route::get('/free-vat-calculator', [VATCalculatorController::class, 'index'])->name('vat.calculator');
+Route::get('/corporation-tax-calculator', [CorporationTaxCalculatorController::class, 'index'])->name('corporation.tax.calculator');
 
 // Blog routes
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
