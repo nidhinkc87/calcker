@@ -1,8 +1,28 @@
 @extends('layouts.app')
 
-@section('title', $blog->title . ' | CalcPro Blog')
-@section('description', $blog->excerpt ?? Str::limit(strip_tags($blog->content), 150))
-@section('keywords', $blog->tags)
+@section('title')
+@if($blog->slug === 'common-gst-mistakes-how-to-avoid-them')
+Common GST Mistakes & How to Avoid Them | Ensure Compliance in 2025
+@else
+{{ $blog->title }} | CalcPro Blog
+@endif
+@endsection
+
+@section('meta_description')
+@if($blog->slug === 'common-gst-mistakes-how-to-avoid-them')
+Discover the 13 most common GST mistakes Indian businesses make—from delayed filings and incorrect ITC claims to invoice errors & reverse charge. Learn how to avoid them with practical tips and stay compliant.
+@else
+{{ $blog->excerpt ?? Str::limit(strip_tags($blog->content), 150) }}
+@endif
+@endsection
+
+@section('meta_keywords')
+@if($blog->slug === 'common-gst-mistakes-how-to-avoid-them')
+GST Mistakes, GST Compliance, Tax Tips, GSTR-1, GSTR-3B, ITC Claims, GST Filing, Indian Tax, GST Returns, Tax Errors
+@else
+{{ $blog->tags }}
+@endif
+@endsection
 
 @section('content')
 <div class="bg-gradient-to-b from-blue-50 to-white py-12">
@@ -69,43 +89,6 @@
             @endif
         </article>
 
-        <!-- Related Articles -->
-        @if($relatedBlogs->count() > 0)
-        <div class="mt-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8">Related Articles</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @foreach($relatedBlogs as $relatedBlog)
-                <article class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <time datetime="{{ $relatedBlog->created_at->format('Y-m-d') }}">
-                                {{ $relatedBlog->created_at->format('M d, Y') }}
-                            </time>
-                        </div>
-                        
-                        <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                            <a href="{{ route('blog.show', $relatedBlog->slug) }}" class="hover:text-blue-600 transition-colors">
-                                {{ $relatedBlog->title }}
-                            </a>
-                        </h3>
-                        
-                        <p class="text-gray-600 text-sm line-clamp-3 mb-4">
-                            {{ $relatedBlog->excerpt ?? Str::limit(strip_tags($relatedBlog->content), 100) }}
-                        </p>
-                        
-                        <a href="{{ route('blog.show', $relatedBlog->slug) }}" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors">
-                            Read More
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </article>
-                @endforeach
-            </div>
-        </div>
-        @endif
-
         <!-- CTA Section -->
         <div class="mt-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white text-center">
             <h2 class="text-3xl font-bold mb-4">Try Our Financial Calculators</h2>
@@ -113,9 +96,6 @@
             <div class="flex flex-wrap gap-4 justify-center">
                 <a href="{{ route('gst.calculator') }}" class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors">
                     GST Calculator
-                </a>
-                <a href="{{ route('vat.calculator') }}" class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors">
-                    VAT Calculator
                 </a>
             </div>
         </div>
@@ -125,40 +105,117 @@
 
 @push('styles')
 <style>
-    .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+    .prose {
+        max-width: none;
     }
-    .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+    .prose h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: #1f2937;
     }
     .prose h2 {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
         font-size: 1.875rem;
         font-weight: 700;
+        line-height: 1.3;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: #1f2937;
     }
     .prose h3 {
-        margin-top: 1.5rem;
-        margin-bottom: 0.75rem;
         font-size: 1.5rem;
         font-weight: 600;
+        line-height: 1.4;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+        color: #374151;
     }
     .prose p {
-        margin-bottom: 1.25rem;
+        font-size: 1.125rem;
         line-height: 1.75;
+        margin-bottom: 1.5rem;
+        color: #374151;
     }
-    .prose ul, .prose ol {
-        margin-bottom: 1.25rem;
+    .prose p strong {
+        font-weight: 600;
+        color: #1f2937;
+    }
+    .prose ul {
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+    }
+    .prose ol {
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
         padding-left: 1.5rem;
     }
     .prose li {
+        margin-bottom: 0.75rem;
+        line-height: 1.7;
+        color: #374151;
+    }
+    .prose li p {
         margin-bottom: 0.5rem;
+    }
+    .prose blockquote {
+        border-left: 4px solid #3b82f6;
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: #6b7280;
+    }
+    .prose code {
+        background-color: #f3f4f6;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        color: #1f2937;
+    }
+    .prose pre {
+        background-color: #1f2937;
+        color: #f9fafb;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+    }
+    .prose table {
+        width: 100%;
+        margin: 1.5rem 0;
+        border-collapse: collapse;
+    }
+    .prose th,
+    .prose td {
+        border: 1px solid #e5e7eb;
+        padding: 0.75rem;
+        text-align: left;
+    }
+    .prose th {
+        background-color: #f9fafb;
+        font-weight: 600;
+    }
+    .prose a {
+        color: #3b82f6;
+        text-decoration: underline;
+        font-weight: 500;
+    }
+    .prose a:hover {
+        color: #1d4ed8;
+    }
+    
+    /* Specific spacing fixes */
+    .prose .content-section {
+        margin-bottom: 2rem;
+    }
+    
+    .prose h2:first-child {
+        margin-top: 0;
+    }
+    
+    .prose p:last-child {
+        margin-bottom: 0;
     }
 </style>
 @endpush
