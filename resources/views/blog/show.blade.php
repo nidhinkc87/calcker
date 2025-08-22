@@ -3,6 +3,8 @@
 @section('title')
 @if($blog->slug === 'common-gst-mistakes-how-to-avoid-them')
 Common GST Mistakes & How to Avoid Them | Ensure Compliance in 2025
+@elseif($blog->slug === 'e-invoicing-under-gst-complete-implementation-guide-2025')
+E-Invoicing Under GST India – Step-by-Step Implementation Guide 2025
 @else
 {{ $blog->title }} | CalcPro Blog
 @endif
@@ -11,6 +13,8 @@ Common GST Mistakes & How to Avoid Them | Ensure Compliance in 2025
 @section('meta_description')
 @if($blog->slug === 'common-gst-mistakes-how-to-avoid-them')
 Discover the 13 most common GST mistakes Indian businesses make—from delayed filings and incorrect ITC claims to invoice errors & reverse charge. Learn how to avoid them with practical tips and stay compliant.
+@elseif($blog->slug === 'e-invoicing-under-gst-complete-implementation-guide-2025')
+Comprehensive guide to GST e-Invoicing in India. Learn applicability, exemptions, reporting timelines, penalties, and a step-by-step process for compliance in 2025.
 @else
 {{ $blog->excerpt ?? Str::limit(strip_tags($blog->content), 150) }}
 @endif
@@ -19,6 +23,8 @@ Discover the 13 most common GST mistakes Indian businesses make—from delayed f
 @section('meta_keywords')
 @if($blog->slug === 'common-gst-mistakes-how-to-avoid-them')
 GST Mistakes, GST Compliance, Tax Tips, GSTR-1, GSTR-3B, ITC Claims, GST Filing, Indian Tax, GST Returns, Tax Errors
+@elseif($blog->slug === 'e-invoicing-under-gst-complete-implementation-guide-2025')
+E-Invoicing under GST, GST e-invoice process, IRP, IRN, GST compliance 2025, GST reporting deadlines, GST e-invoice guide
 @else
 {{ $blog->tags }}
 @endif
