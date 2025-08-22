@@ -9,7 +9,7 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Blog::query();
+        $query = Blog::where('is_published', true);
 
         // Search functionality
         if ($request->has('search') && $request->search != '') {
@@ -30,8 +30,9 @@ class BlogController extends Controller
 
     public function show($slug)
     {
-        $blog = Blog::where('slug', $slug)->firstOrFail();
+        $blog = Blog::where('slug', $slug)->where('is_published', true)->firstOrFail();
         $relatedBlogs = Blog::where('id', '!=', $blog->id)
+                            ->where('is_published', true)
                             ->orderBy('created_at', 'desc')
                             ->limit(3)
                             ->get();
