@@ -73,6 +73,14 @@
                                     <span>EPS Pension Calculator</span>
                                 </div>
                             </a>
+                            <a href="{{ route('hra.exemption.calculator') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2v0"></path>
+                                    </svg>
+                                    <span>HRA Exemption Calculator</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -103,6 +111,7 @@
                         <a href="{{ route('furlough.claim.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">HMRC Furlough Claim Calculator</a>
                         <a href="{{ route('income.tax.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">Income Tax Calculator</a>
                         <a href="{{ route('eps.pension.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">EPS Pension Calculator</a>
+                        <a href="{{ route('hra.exemption.calculator') }}" class="block py-2 text-sm text-gray-600 hover:text-blue-600">HRA Exemption Calculator</a>
                     </div>
                 </div>
                 <a href="{{ route('blog.index') }}" class="block px-4 py-2 text-gray-700 font-medium hover:text-blue-600">Blogs</a>

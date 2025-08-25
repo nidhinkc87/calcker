@@ -7,6 +7,7 @@ use App\Http\Controllers\CorporationTaxCalculatorController;
 use App\Http\Controllers\FurloughClaimCalculatorController;
 use App\Http\Controllers\IncomeTaxCalculatorController;
 use App\Http\Controllers\EPSPensionCalculatorController;
+use App\Http\Controllers\HRAExemptionCalculatorController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 
@@ -20,6 +21,7 @@ Route::get('/corporation-tax-calculator', [CorporationTaxCalculatorController::c
 Route::get('/furlough-claim-calculator', [FurloughClaimCalculatorController::class, 'index'])->name('furlough.claim.calculator');
 Route::get('/income-tax-calculator', [IncomeTaxCalculatorController::class, 'index'])->name('income.tax.calculator');
 Route::get('/free-eps-pension-calculator', [EPSPensionCalculatorController::class, 'index'])->name('eps.pension.calculator');
+Route::get('/hra-exemption-calculator', [HRAExemptionCalculatorController::class, 'index'])->name('hra.exemption.calculator');
 
 // Blog routes
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
