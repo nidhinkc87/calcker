@@ -2,9 +2,169 @@
 
 @section('title', 'Free NPS Calculator India - National Pension System Calculator 2025 | CalcPro')
 
-@section('meta_description', 'Calculate your NPS pension, maturity amount & tax benefits with our free National Pension System calculator. Plan your retirement with NPS Tier I & Tier II calculations.')
+@section('meta_description', 'Calculate your NPS pension, maturity amount & tax benefits with our free National Pension System calculator. Plan your retirement with NPS Tier I & Tier II calculations for 2025.')
 
-@section('meta_keywords', 'NPS calculator, National Pension System calculator, NPS pension calculator, retirement calculator India, NPS maturity calculator, pension planning, NPS tax benefits')
+@section('meta_keywords', 'NPS calculator, National Pension System calculator, NPS pension calculator, retirement calculator India, NPS maturity calculator, pension planning, NPS tax benefits, PFRDA calculator')
+
+@push('head')
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Free NPS Calculator India - National Pension System Calculator 2025 | CalcPro">
+<meta property="og:description" content="Calculate your NPS pension, maturity amount & tax benefits with our free National Pension System calculator. Plan your retirement with accurate NPS calculations.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta property="og:image" content="{{ asset('images/nps-calculator-og.jpg') }}">
+<meta property="og:site_name" content="CalcPro">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free NPS Calculator India - National Pension System Calculator 2025">
+<meta name="twitter:description" content="Calculate your NPS pension, maturity amount & tax benefits with our free National Pension System calculator.">
+<meta name="twitter:image" content="{{ asset('images/nps-calculator-twitter.jpg') }}">
+
+<!-- Additional SEO Meta Tags -->
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="CalcPro">
+<meta name="generator" content="Laravel">
+<link rel="canonical" href="{{ url()->current() }}">
+
+<!-- Structured Data - Calculator JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "NPS Calculator",
+  "description": "Free National Pension System (NPS) calculator to calculate pension amount, maturity value, and tax benefits for retirement planning in India",
+  "url": "{{ url()->current() }}",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "CalcPro",
+    "url": "{{ url('/') }}"
+  },
+  "featureList": [
+    "Calculate NPS maturity amount",
+    "Estimate monthly pension from NPS",
+    "Calculate tax benefits under Section 80C and 80CCD",
+    "Plan retirement corpus with NPS",
+    "Compare lump sum vs annuity options"
+  ]
+}
+</script>
+
+<!-- Structured Data - BreadcrumbList JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ url('/') }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Finance Calculators",
+      "item": "{{ url('/') }}#finance"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "NPS Calculator",
+      "item": "{{ url()->current() }}"
+    }
+  ]
+}
+</script>
+
+<!-- Structured Data - FAQPage JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is NPS (National Pension System)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NPS is a government-sponsored pension scheme that helps you build a retirement corpus through systematic investments. It offers tax benefits and flexible investment options regulated by PFRDA."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum investment in NPS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The minimum monthly contribution in NPS is ₹500 and minimum annual contribution is ₹6,000. The maximum annual contribution is ₹24,00,000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the tax benefits of NPS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NPS offers tax benefits under Section 80C (up to ₹1.5 lakh), Section 80CCD(1B) (additional ₹50,000), and Section 80CCD(2) for employer contributions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When can I withdraw from NPS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can withdraw from NPS at retirement age (60-75 years). Minimum 40% must be used to purchase annuity, rest can be withdrawn as lump sum."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Structured Data - HowTo JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Calculate NPS Pension Using NPS Calculator",
+  "description": "Step-by-step guide to calculate your National Pension System (NPS) pension and maturity amount",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Enter Monthly Investment",
+      "text": "Enter your monthly NPS contribution amount (minimum ₹500, maximum ₹2,00,000)"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Set Expected Return",
+      "text": "Choose expected annual return rate between 5% to 15% based on your risk appetite"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter Age Details",
+      "text": "Input your current age (18-65) and planned retirement age (60-75 years)"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Set Annuity Parameters",
+      "text": "Choose annuity purchase percentage (minimum 40%) and expected annuity return (4-10%)"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Calculate Results",
+      "text": "Click calculate to get your NPS maturity amount, monthly pension, and tax benefits"
+    }
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 <div class="bg-gradient-to-b from-blue-50 to-white py-12">
@@ -226,7 +386,7 @@
 
                 <!-- Information Section -->
                 <div class="mt-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Understanding NPS (National Pension System)</h2>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Understanding NPS (National Pension System) in India 2025</h2>
                     <div class="prose prose-lg max-w-none text-gray-600">
                         <p class="mb-6">
                             The National Pension System (NPS) is a government-sponsored pension scheme that helps you build a retirement corpus through systematic investments. It offers tax benefits and flexible investment options to secure your financial future.
@@ -234,7 +394,7 @@
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
                             <div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-4">Key Features</h3>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-4">Key Features of NPS</h3>
                                 <ul class="space-y-3">
                                     <li class="flex items-start">
                                         <span class="text-blue-500 mr-3 mt-1">•</span>
@@ -268,7 +428,7 @@
                             </div>
                             
                             <div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-4">Tax Benefits</h3>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-4">NPS Tax Benefits Under Section 80C & 80CCD</h3>
                                 <ul class="space-y-3">
                                     <li class="flex items-start">
                                         <span class="text-blue-500 mr-3 mt-1">•</span>
@@ -304,6 +464,37 @@
                                 <li>• Exit age is flexible between 60-75 years</li>
                                 <li>• Regulated by PFRDA (Pension Fund Regulatory Authority)</li>
                             </ul>
+                        </div>
+
+                        <!-- FAQ Section -->
+                        <div class="mt-12">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions About NPS Calculator</h2>
+                            <div class="space-y-6">
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-3">How accurate is the NPS calculator?</h3>
+                                    <p class="text-gray-600">Our NPS calculator provides highly accurate estimates based on current PFRDA guidelines and compound interest calculations. However, actual returns may vary based on market performance and fund management.</p>
+                                </div>
+                                
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-3">What is the maximum contribution limit for NPS?</h3>
+                                    <p class="text-gray-600">The maximum annual contribution to NPS is ₹24,00,000 (₹2,00,000 per month). However, tax benefits are available up to ₹2,00,000 annually under various sections.</p>
+                                </div>
+                                
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Can I change my NPS contribution amount?</h3>
+                                    <p class="text-gray-600">Yes, you can increase or decrease your NPS contribution at any time. However, maintain the minimum annual contribution of ₹6,000 to keep your account active.</p>
+                                </div>
+
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-3">What happens to my NPS if I change jobs?</h3>
+                                    <p class="text-gray-600">NPS is completely portable. Your account remains active and you can continue contributions regardless of job changes. Your PRAN (Permanent Retirement Account Number) stays the same throughout your career.</p>
+                                </div>
+
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Is NPS better than PPF for retirement planning?</h3>
+                                    <p class="text-gray-600">NPS offers market-linked returns with potentially higher growth compared to PPF's fixed returns. However, PPF has guaranteed returns and complete tax-free withdrawals. Consider your risk appetite and retirement goals when choosing.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
